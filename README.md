@@ -2,8 +2,6 @@
 
 **Get Roblox Cookies and Hack Others' Accounts!**
 
-Many exe files made with python are found in windows security but this is not
-
 # how2use
 
 ### Webhook Settings
