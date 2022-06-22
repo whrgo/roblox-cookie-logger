@@ -4,23 +4,36 @@
 
 # how2use
 
-### Webhook Settings
+### change server ip
 
-Go to [RobloxLoggerMain.py](./RobloxLoggerMain.py) and put your webhook url at _WEBHOOK_ (a constant)
+**edit `ServerIp` at [config.json](config.json)**
 
-```py
-# RobloxLoggerMain.py at line 4
-WEBHOOK = 'https://discord.com/api...'
+you can get your ip address at command prompt
+
 ```
+ipconfig
+```
+
+### execute server
+
+**just open [server.py](Server.py) with python3.x**
+
+### execute client
+
+[convert exe](#convert-exe) [Client.py](Client.py) and execute someone
 
 ### Convert exe
 
 this requires [pyinstaller](https://pypi.org/project/pyinstaller/)
 
-`pip install pyinstaller`
+```
+pip install pyinstaller
+```
 
 Then at the command prompt,
 
-`pyinstaller -w -F Main.py`
+```
+pyinstaller -F Client\Client.py
+```
 
-Then you can get `.exe` file in `/dist/*`
+**_Then you can get `.exe` file in `/dist/*`_**

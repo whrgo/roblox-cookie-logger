@@ -1,13 +1,16 @@
 import socket
 import threading
 from colorama import Fore, Style
-
+from modules.getServerIp import getServerip
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-s.bind(('192.168.75.43', 8888))
+addr = (getServerip(), 8888)
+s.bind(addr)
 
 s.listen(1)
+print(
+    f"{Fore.BLUE} Server is listening at {addr[0]}:{addr[1]}{Style.RESET_ALL}")
 
 
 def handle_tcp(sock, addr):
@@ -23,6 +26,7 @@ def handle_tcp(sock, addr):
 
 
 if __name__ == '__main__':
+
     sock, addr = s.accept()
     threading.Thread(target=handle_tcp, args=(sock, addr)).start()
 

