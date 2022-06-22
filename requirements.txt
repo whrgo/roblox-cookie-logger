@@ -1,3 +1,2 @@
-wxpython
 requests
 browser_cookie3
