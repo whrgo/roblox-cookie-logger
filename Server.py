@@ -1,11 +1,10 @@
 import socket
 import threading
 from colorama import Fore, Style
-from modules.getServerIp import getServerip
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-addr = (getServerip(), 8888)
+addr = ("YOUR IP HERE", 8888)
 s.bind(addr)
 
 s.listen(1)

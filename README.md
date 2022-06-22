@@ -6,7 +6,15 @@
 
 ### change server ip
 
-**edit `ServerIp` at [config.json](config.json)**
+## change ip of Client.py
+
+on [client.py](Client.py) line 5
+
+## change ip of Server.py
+
+on [server.py](Server.py) line 7
+
+**this ip must be same**
 
 you can get your ip address at command prompt
 
