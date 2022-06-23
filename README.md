@@ -4,31 +4,23 @@
 
 # how2use
 
-### change server ip
+## Set server ip
 
-## change ip of Client.py
+at windows console, `ipconfig` to get your IPv4 Address
 
-on [client.py](Client.py) line 5
+and paste it at [Client.py](Client.py) line 5
 
-## change ip of Server.py
+When you run [Server.py](Server.py), you can push ip at GUI application
 
-on [server.py](Server.py) line 7
+![Example IP edit image](imgs/Example_IP.png)
 
-**this ip must be same**
-
-you can get your ip address at command prompt
-
-```
-ipconfig
-```
-
-### execute server
+## execute server
 
 **just open [server.py](Server.py) with python3.x**
 
-### execute client
+## execute client
 
-[convert exe](#convert-exe) [Client.py](Client.py) and execute someone
+**[Convert](#convert-exe) [Client.py](Client.py) to an exe and have someone else run it**
 
 ### Convert exe
 
@@ -45,3 +37,5 @@ pyinstaller -F Client\Client.py
 ```
 
 **_Then you can get `.exe` file in `/dist/*`_**
+
+_You can also convert Server.py_
