@@ -33,7 +33,7 @@ pip install pyinstaller
 Then at the command prompt,
 
 ```
-pyinstaller -F Client\Client.py
+pyinstaller -F Client.py
 ```
 
 **_Then you can get `.exe` file in `/dist/*`_**
