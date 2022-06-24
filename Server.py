@@ -30,8 +30,11 @@ class Frame(GUIserver):
         )
         self.tbConsole.AppendText("---------------------------\n")
 
-        self.tbConsole.AppendText(
-            subprocess.check_output("ipconfig", shell=True).decode())
+        try:
+            self.tbConsole.AppendText(
+                subprocess.check_output("ipconfig", shell=True).decode())
+        except:
+            pass
 
         # self.tbIP.SetValue(ip_address)
 
