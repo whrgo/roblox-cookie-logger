@@ -10,20 +10,21 @@ class GUIserver(wx.Frame):
 
         self.panel = wx.Panel(self, wx.ID_ANY)
 
+        ''' buttons '''
+        self.btnStart = wx.Button(
+            self.panel, wx.ID_ANY, "Run server", name="btnStart")
+        self.btnStop = wx.Button(
+            self.panel, wx.ID_ANY, "Stop server", name="btnStop")
+        self.btnRestart = wx.Button(
+            self.panel, wx.ID_ANY, "Restart server", name="btnRestart")
+
+        ''' Console '''
         self.tbConsole = wx.TextCtrl(
             self.panel, wx.ID_ANY, "", style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_CENTRE, size=(-1, 200), pos=(0, 0), name="tbConsole")
         self.tbConsole.BackgroundColour = "black"
         self.tbConsole.ForegroundColour = "white"
         self.tbConsole.SetFont(wx.Font(
             10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Consolas"))
-
-        ''' buttons '''
-        self.btnStart = wx.Button(
-            self.panel, wx.ID_ANY, "Run server", size=(-1, -1), pos=(0, 0), name="btnStart")
-        self.btnStop = wx.Button(
-            self.panel, wx.ID_ANY, "Stop server", size=(-1, -1), pos=(0, 0), name="btnStop")
-        self.btnRestart = wx.Button(
-            self.panel, wx.ID_ANY, "Restart server", size=(-1, -1), pos=(0, 0), name="btnRestart")
 
         ''' text ctrls '''
         self.tbIP = wx.TextCtrl(self.panel, wx.ID_ANY,
@@ -38,43 +39,51 @@ class GUIserver(wx.Frame):
         self.SetTitle("[GUI] Roblox Cookie Logger Server")
         self.SetBackgroundColour(wx.Colour(255, 255, 255))
         self.panel.SetBackgroundColour(wx.Colour(255, 255, 255))
-        self.SetMaxSize((600, 400))
-        self.SetMinSize((600, 400))
 
     def __do_layout(self):
         sizer_1 = wx.BoxSizer(wx.VERTICAL)
         sizer_2 = wx.BoxSizer(wx.VERTICAL)
 
+        ''' ip && port '''
+        tbGrid = wx.GridSizer(2, 2, 0, 0)
+
         lblIP = wx.StaticText(self.panel, wx.ID_ANY, "IP")
-        sizer_2.Add(lblIP, 0, wx.TOP, 5)
-        sizer_2.Add(self.tbIP, 0, wx.EXPAND, 0)
-
         lblPORT = wx.StaticText(self.panel, wx.ID_ANY, "PORT")
-        sizer_2.Add(lblPORT, 0, wx.TOP, 5)
-        sizer_2.Add(self.tbPORT, 0, wx.EXPAND, 0)
 
-        # Console
+        tbGrid.AddMany(
+            [
+                (lblIP, 0, wx.TOP | wx.EXPAND | wx.ALL, 5),
+                (self.tbIP, 1, wx.TOP, 0),
+                (lblPORT, 0, wx.TOP | wx.EXPAND | wx.ALL, 5),
+                (self.tbPORT, 1, wx.TOP, 0),
+            ])
+
+        sizer_2.Add(tbGrid, 0, wx.EXPAND, 6)
+
+        ''' console '''
         lbConsole = wx.StaticText(self.panel, wx.ID_ANY, "Console")
         sizer_2.Add(lbConsole, 0, wx.TOP, 5)
         sizer_2.Add(self.tbConsole, 1, wx.EXPAND, 0)
 
-        # turn on/off buttons
-        sizer_2.Add(self.btnStart, 0,  wx.BI_EXPAND, 5)
-        sizer_2.Add(self.btnStop, 0,  wx.BI_EXPAND, 5)
-        sizer_2.Add(self.btnRestart, 0, wx.BI_EXPAND, 5)
+        ''' buttons '''
+        btngrid = wx.GridSizer(1, 3, 0, 0)
+        btngrid.AddMany(
+            [(self.btnStart, 0, wx.EXPAND),
+             (self.btnStop, 0, wx.EXPAND),
+             (self.btnRestart, 0, wx.EXPAND)])
+        sizer_2.Add(btngrid, 0, wx.EXPAND, 16)
 
-        ''' Layouts '''
+        ''' main '''
         self.panel.SetSizer(sizer_2)
 
         sizer_1.Add(self.panel, 1, wx.ALL | wx.EXPAND, 5)
         self.SetSizer(sizer_1)
-        self.SetSizer(sizer_1, False)
         self.Layout()
 
 
 class MyApp(wx.App):
     def OnInit(self):
-        self.Window = GUIserver(None, wx.ID_ANY, "")
+        self.Window = GUIserver(None, wx.ID_ANY, "", )
         self.SetTopWindow(self.Window)
         self.Window.Show()
         return True

