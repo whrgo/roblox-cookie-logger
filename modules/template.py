@@ -10,13 +10,11 @@ class GUIserver(wx.Frame):
 
         self.panel = wx.Panel(self, wx.ID_ANY)
 
-        ''' buttons '''
-        self.btnStart = wx.Button(
-            self.panel, wx.ID_ANY, "Run server", name="btnStart")
-        self.btnStop = wx.Button(
-            self.panel, wx.ID_ANY, "Stop server", name="btnStop")
-        self.btnRestart = wx.Button(
-            self.panel, wx.ID_ANY, "Restart server", name="btnRestart")
+        ''' text ctrls '''
+        self.tbIP = wx.TextCtrl(self.panel, wx.ID_ANY,
+                                'localhost', style=wx.TE_PROCESS_ENTER)
+        self.tbPORT = wx.TextCtrl(
+            self.panel, wx.ID_ANY, "8888", style=wx.TE_PROCESS_ENTER)
 
         ''' Console '''
         self.tbConsole = wx.TextCtrl(
@@ -26,11 +24,9 @@ class GUIserver(wx.Frame):
         self.tbConsole.SetFont(wx.Font(
             10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Consolas"))
 
-        ''' text ctrls '''
-        self.tbIP = wx.TextCtrl(self.panel, wx.ID_ANY,
-                                'localhost', style=wx.TE_PROCESS_ENTER)
-        self.tbPORT = wx.TextCtrl(
-            self.panel, wx.ID_ANY, "8888", style=wx.TE_PROCESS_ENTER)
+        ''' buttons '''
+        self.btnToggleRun = wx.Button(
+            self.panel, wx.ID_ANY, "Run  Server")
 
         self.__set_properties()
         self.__do_layout()
@@ -45,33 +41,31 @@ class GUIserver(wx.Frame):
         sizer_2 = wx.BoxSizer(wx.VERTICAL)
 
         ''' ip && port '''
-        tbGrid = wx.GridSizer(2, 2, 0, 0)
+        tbGrid = wx.FlexGridSizer(2, 2, 0, 0)
 
         lblIP = wx.StaticText(self.panel, wx.ID_ANY, "IP")
-        lblPORT = wx.StaticText(self.panel, wx.ID_ANY, "PORT")
+        lblPORT = wx.StaticText(self.panel, wx.ID_ANY, "PORT               ")
 
         tbGrid.AddMany(
             [
-                (lblIP, 0, wx.TOP | wx.EXPAND | wx.ALL, 5),
-                (self.tbIP, 1, wx.TOP, 0),
-                (lblPORT, 0, wx.TOP | wx.EXPAND | wx.ALL, 5),
-                (self.tbPORT, 1, wx.TOP, 0),
-            ])
+                (lblIP, 0, 0, 5),
+                (self.tbIP, 1, wx.ALL | wx.EXPAND, 0),
+                (lblPORT, 0, 0, 5),
+                (self.tbPORT, 1, wx.TOP | wx.EXPAND, 0),
+            ]
+        )
 
-        sizer_2.Add(tbGrid, 0, wx.EXPAND, 6)
+        tbGrid.AddGrowableCol(1)
+
+        sizer_2.Add(tbGrid, 0, wx.EXPAND, 0)
 
         ''' console '''
         lbConsole = wx.StaticText(self.panel, wx.ID_ANY, "Console")
-        sizer_2.Add(lbConsole, 0, wx.TOP, 5)
+        sizer_2.Add(lbConsole, 0, wx.TOP, 0)
         sizer_2.Add(self.tbConsole, 1, wx.EXPAND, 0)
 
         ''' buttons '''
-        btngrid = wx.GridSizer(1, 3, 0, 0)
-        btngrid.AddMany(
-            [(self.btnStart, 0, wx.EXPAND),
-             (self.btnStop, 0, wx.EXPAND),
-             (self.btnRestart, 0, wx.EXPAND)])
-        sizer_2.Add(btngrid, 0, wx.EXPAND, 16)
+        sizer_2.Add(self.btnToggleRun, 0, wx.ALL | wx.EXPAND, 5)
 
         ''' main '''
         self.panel.SetSizer(sizer_2)

