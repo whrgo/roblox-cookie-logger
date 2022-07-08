@@ -43,3 +43,9 @@ pyinstaller -F Client.py
 **_Then you can get `.exe` file in `/dist/*`_**
 
 _You can also convert Server.py_
+
+
+
+# Contact
+
+** discord: whrgodev#0643**  
