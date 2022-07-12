@@ -28,9 +28,9 @@ class GUIserver(wx.Frame):
         self.btnToggleRun = wx.Button(
             self.panel, wx.ID_ANY, "Run  Server")
 
-        self.__do_menubar()
+        # self.__do_menubar()
         self.__set_properties()
-        # self.__do_layout()
+        self.__do_layout()
 
     def __set_properties(self):
         self.SetTitle("Server")
