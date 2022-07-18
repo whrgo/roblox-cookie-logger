@@ -18,7 +18,9 @@ When you run [Server.py](Server.py), you can push ip at GUI application
 
 **just open [server.py](Server.py) with python3.x**
 
-- You can edit _ip & port _ at **SERVER GUI!!**
+** and put your ip from the ipconfig **
+
+** and just click button 'Run Server' **
 
 ## execute client
 
